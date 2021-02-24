@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <exception>
+#include <time.h>
 
 #include "DisplayApp.h"
 #include "Util.h"
@@ -15,10 +16,8 @@ DisplayApp::DisplayApp()
 {
 }
 
-void DisplayApp::Init(Point* begin, Point* end)
-{
-	this->begin = begin;
-	this->end = end;
+void DisplayApp::Init()
+{	
 	AllocateMemory();
 	initMap();
 	initList();
@@ -28,8 +27,12 @@ void DisplayApp::RunAStar()
 {
 	AStar* aStar = new AStar();
 	aStar->Init(table, list, begin, end);
+	clock_t startTime, endTime;
+	startTime = clock();//计时开始
 	aStar->Run();
+    endTime = clock();//计时结束
 	aStar->OutPut();
+	cout << "\nTotal time: " << (endTime - startTime) << "(ms).\n" << endl;	
 }
 
 void DisplayApp::AllocateMemory()
@@ -69,6 +72,15 @@ void DisplayApp::initMap()
 				else
 				{
 					table[i][j] = data;
+					//1起点，2终点
+					if (table[i][j] == '1')
+					{
+						this->begin = new Point(i, j);
+					}
+					else if (table[i][j] == '2')
+					{
+						this->end = new Point(i, j);
+					}															
 				}
 			}
 		}

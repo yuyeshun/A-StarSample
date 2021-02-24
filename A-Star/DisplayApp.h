@@ -1,11 +1,13 @@
 #pragma once
 
+struct Point;
+
 class DisplayApp
 {
 public:
 	DisplayApp();
 public:
-	void Init(struct Point* begin, struct Point* end);
+	void Init();
 
 	void RunAStar();	
 private:

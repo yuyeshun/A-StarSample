@@ -2,8 +2,8 @@
 #include <iostream>
 #include <string>
 
-const int WIDTH = 20;
-const int HEIGHT = 20;
+const int WIDTH = 40;
+const int HEIGHT = 40;
 
 const int NEIGHBOUR = 8;
 
